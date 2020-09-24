@@ -19,8 +19,9 @@ Empirical logic to find summary
 split the sentence and first sentence and fine the top 5 sentence with max number of words among the rest
 Document Summarisation
 ML_project1
-	/bin 
-	-prepocessor.py
+	/bin
+	
+	- prepocessor.py
 		Class processDoc
 			Function
 			- spacial chr
