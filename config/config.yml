@@ -1,4 +1,4 @@
 data_path:
-  train_data: D:\MLproject_1\data\train
-  test_data: D:\MLproject_1\data\test
+  train_data: D:\MLproject_1\data\train\artical1.txt
+  test_data: D:\MLproject_1\data\test\artical1.txt
 sentene_num: 3

@@ -38,7 +38,17 @@ ML_project1
 			-findNumWords
 			-findTop3sent
 			-sentenceCombiner
-			
+
+relative path
+
+local --push---git repo ---pull --aw insrance--deploy
+
+git init
+git add.
+git commit -m "first commit"
+git remort add
+git push origin master
+	
 			
 			
 			
