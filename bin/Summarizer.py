@@ -7,6 +7,7 @@ Created on Thu Sep 24 18:05:02 2020
 import yaml
 import numpy as np
 import pandas as pd
+from prepocessorsor import PreprocessDoc
 
 class SummarizeDoc:
     def __init__(self):
@@ -40,10 +41,16 @@ class SummarizeDoc:
         topidx = sotedidx[-n:]
         topsent = [sentlength[i] for i in topidx]
         return topsent
-    
+    def preprocess(self,text):
+        preprocessobj = PreprocessDoc()
+        filtetext  = preprocessobj.removeSpclChar(text)
+        filtertext = preprocessobj.convertolow(filtetext)
+        
+        return filtertext
     def finssummery(self):
         filepath = self.config['data_path']['train_data']
         text =self.lodedocs(filepath)
+        filtertrext = self.preprocess(text)
         sentences = self.splitSentences(text)
         firstsent,restofsent =self.groupSentences(sentences)
         sentlents = self.findsentlentarray(restofsent)
@@ -54,8 +61,7 @@ class SummarizeDoc:
     
     
 summarizeOBJ = SummarizeDoc()
-
-
+summery =summarizeOBJ.finssummery()
 
 
 

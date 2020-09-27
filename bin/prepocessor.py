@@ -11,7 +11,7 @@ class PreprocessDoc:
         """
         module for prepocessing articals
         """
-    def removeSpclChar(text):
+    def removeSpclChar(self,text):
         """
         remove spacial chracaters
         
@@ -21,8 +21,10 @@ class PreprocessDoc:
             modifiedtext: string
                 
         """
-        pass
+        filtertext =re.sub(',|;|#|$','',text)
+        return filtertext
     
-    def tokenizerArtical():
-        pass
+    def convertolow(self,text):
+        
+        retuen text.lower()
     
