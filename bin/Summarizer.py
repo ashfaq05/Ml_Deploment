@@ -54,7 +54,7 @@ class SummarizeDoc:
     
     
 summarizeOBJ = SummarizeDoc()
-summarizeOBJ.config
+
 
 
 
