@@ -47,7 +47,7 @@ class SummarizeDoc:
         sentences = self.splitSentences(text)
         firstsent,restofsent =self.groupSentences(sentences)
         sentlents = self.findsentlentarray(restofsent)
-        topsentenses =self.findtopsent(sentlents,restofsent,self.config['sent_num])
+        topsentenses =self.findtopsent(sentlents,restofsent,self.config['sentene_num])
         allsent = [firstsent]+ topsentenses
         summery =' '.join(allsent)
         return summery
