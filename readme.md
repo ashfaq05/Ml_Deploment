@@ -48,7 +48,72 @@ git add.
 git commit -m "first commit"
 git remort add
 git push origin master
+
+SOAP
+REST
+
+fundamentale principles od db
+
+crud
+c-creat
+r-read
+u-update
+d-delete
+
+reat
+get-read
+put-update
+post-create
+delete-delete
+head
+
+
+framework
+python
+
+flask-most populaer
+django- popular
+bottle-one page design
+fastapi-new
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			
 			
 			
