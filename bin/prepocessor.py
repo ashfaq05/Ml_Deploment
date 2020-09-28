@@ -8,23 +8,20 @@ Created on Thu Sep 24 18:03:48 2020
 import re
 
 class PreprocessDoc:
-        """
-        module for prepocessing articals
-        """
+    """
+    Module for preprocessin articles
+    """
     def removeSpclChar(self,text):
         """
-        remove spacial chracaters
+        Remove special Characters
         
-        input
-            text:String
-        output:
-            modifiedtext: string
-                
+        Input:
+            text: string
+        Output:
+            modifiedText: string
         """
-        filtertext =re.sub(',|;|#|$','',text)
-        return filtertext
-    
-    def convertolow(self,text):
-        
-        retuen text.lower()
-    
+        filteredText = re.sub(',|;|#|$|\|/','',text)
+        return filteredText
+
+    def convertToLower(self,text):
+        return text.lower()

@@ -7,63 +7,63 @@ Created on Thu Sep 24 18:05:02 2020
 import yaml
 import numpy as np
 import pandas as pd
-from prepocessorsor import PreprocessDoc
-
+from prepocessor import PreprocessDoc
 class SummarizeDoc:
+    
     def __init__(self):
-        with open('../config/config.yml','r') as f1:
-            self.config = yaml.load(f1)
-            
+        with open('../config/config.yml','r') as fl:
+            self.config = yaml.load(fl)
         
-    def lodedocs(self,filepath):
-        with open(filepath,'r') as f1:
-            text = f1.read()
+    def loadDocs(self,filePath):
+        with open(filePath,'r',encoding='utf-8') as fl:
+            text = fl.read()
         return text
-        
     
     def splitSentences(self,text):
+        """
+        Split paragraph into an array of sentences
         
-        sentences=text.split('.')
+        Input:
+            text: string
+        Output:
+            sentences: a list of string
+        """
+        sentences = text.split('.')
         return sentences
     
     def groupSentences(self,sentences):
-        firstsent,restofsent = sentences[0],sentences[1:]
-        
-        return firstsent ,restofsent
+        firstSent, restOfSent = sentences[0], sentences[1:]
+        return firstSent, restOfSent
     
-    def findsentlength(self,text):
+    def findSentLength(self,text):
         return text.split()
-    def findsentlentarray(self,sentences):
-        return [self.findsentlength(sent) for sent in sentences]
     
-    def findtopsent(self,sentlength,sentences,n):
-        sotedidx = np.argsort(sentlength)
-        topidx = sotedidx[-n:]
-        topsent = [sentlength[i] for i in topidx]
-        return topsent
+    def findSentLenghtArray(self,sentences):
+        return [self.findSentLength(sent) for sent in sentences]
+    
+    def findTopSentences(self,sentLengths,sentences,n):
+        sortedIdx = np.argsort(sentLengths)
+        topnIdx = sortedIdx[-n:]
+        topnSentences = [sentences[i] for i in topnIdx]
+        return topnSentences
+    
     def preprocess(self,text):
-        preprocessobj = PreprocessDoc()
-        filtetext  = preprocessobj.removeSpclChar(text)
-        filtertext = preprocessobj.convertolow(filtetext)
+        preprocessObj = PreprocessDoc()
+        filteredText = preprocessObj.removeSpclChar(text)
+        filteredText = preprocessObj.convertToLower(filteredText)
+        return filteredText
+    
+    def findSummary(self):
+        filePath = self.config['data_path']['train_data']
+        text = self.loadDocs(filePath)
+        filteredText = self.preprocess(text)
+        sentences = self.splitSentences(filteredText)
+        firstSent,restOfSent = self.groupSentences(sentences)
+        sentLengths = self.findSentLenghtArray(restOfSent)
+        topnSentences = self.findTopSentences(sentLengths,restOfSent,self.config['sentence_num'])
+        allSentences = [firstSent] + topnSentences
+        summary = '_'.join(allSentences)
+        return summary
         
-        return filtertext
-    def finssummery(self):
-        filepath = self.config['data_path']['train_data']
-        text =self.lodedocs(filepath)
-        filtertrext = self.preprocess(text)
-        sentences = self.splitSentences(text)
-        firstsent,restofsent =self.groupSentences(sentences)
-        sentlents = self.findsentlentarray(restofsent)
-        topsentenses =self.findtopsent(sentlents,restofsent,self.config['sentene_num])
-        allsent = [firstsent]+ topsentenses
-        summery =' '.join(allsent)
-        return summery
-    
-    
-summarizeOBJ = SummarizeDoc()
-summery =summarizeOBJ.finssummery()
-
-
-
-    
-    
+summarizeObj = SummarizeDoc()
+summary = summarizeObj.findSummary()
